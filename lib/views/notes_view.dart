@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/widgets/note_item.dart';
 
 class NotesView extends StatelessWidget {
   const NotesView({super.key});
@@ -6,12 +7,13 @@ class NotesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(onPressed: () {} ,backgroundColor: ,),
       body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-              child: Row(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+          child: Column(
+            children: [
+              Row(
                 children: [
                   Text('Notes', style: TextStyle(fontSize: 24)),
                   Spacer(),
@@ -26,8 +28,19 @@ class NotesView extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-          ],
+              SizedBox(height: 10),
+              Expanded(
+                child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 14),
+                      child: NoteItem(),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
