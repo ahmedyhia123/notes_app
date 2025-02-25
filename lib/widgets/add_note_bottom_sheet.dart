@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/constans.dart';
 
 class AddNoteBottomSheet extends StatelessWidget {
   const AddNoteBottomSheet({super.key});
@@ -18,14 +19,11 @@ class AddNoteBottomSheet extends StatelessWidget {
         child: Column(
           children: [
             TextField(
-              cursorColor: Color(0xff62FCD6),
+              cursorColor: kPrimaryColor,
               decoration: InputDecoration(
-                label: Text(
-                  'Title',
-                  style: TextStyle(color: const Color(0xff62FCD6)),
-                ),
+                label: Text('Title', style: TextStyle(color: kPrimaryColor)),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xff62FCD6), width: 1),
+                  borderSide: BorderSide(color: kPrimaryColor, width: 1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 enabledBorder: OutlineInputBorder(
@@ -39,12 +37,9 @@ class AddNoteBottomSheet extends StatelessWidget {
               maxLines: 5,
               cursorColor: Color(0xff62FCD6),
               decoration: InputDecoration(
-                label: Text(
-                  'Contant',
-                  style: TextStyle(color: const Color(0xff62FCD6)),
-                ),
+                label: Text('Contant', style: TextStyle(color: kPrimaryColor)),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xff62FCD6), width: 1),
+                  borderSide: BorderSide(color: kPrimaryColor, width: 1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 enabledBorder: OutlineInputBorder(
@@ -60,7 +55,7 @@ class AddNoteBottomSheet extends StatelessWidget {
               },
               child: Container(
                 decoration: BoxDecoration(
-                  color: Color(0xff62FCD6),
+                  color: kPrimaryColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 width: double.infinity,
