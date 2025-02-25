@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/constans.dart';
 
 class EditView extends StatelessWidget {
   const EditView({super.key});
@@ -60,6 +61,28 @@ class EditView extends StatelessWidget {
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white, width: 1),
                     borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+              SizedBox(height: 50),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: kPrimaryColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  width: double.infinity,
+                  height: 40,
+
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Cancel',
+                      style: TextStyle(color: Colors.black, fontSize: 16),
+                    ),
                   ),
                 ),
               ),
