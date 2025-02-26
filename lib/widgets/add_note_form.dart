@@ -43,7 +43,6 @@ class _AddNoteFormState extends State<AddNoteForm> {
             onTap: () {
               if (myForm.currentState!.validate()) {
                 myForm.currentState!.save();
-                Navigator.pop(context);
               } else {
                 autovalidateMode = AutovalidateMode.always;
                 setState(() {});
