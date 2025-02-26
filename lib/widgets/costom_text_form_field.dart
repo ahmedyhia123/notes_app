@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/constans.dart';
 
-class costomTextFormField extends StatelessWidget {
-  costomTextFormField({
+class CostomTextFormField extends StatelessWidget {
+  const CostomTextFormField({
     super.key,
     this.onSaved,
     required this.title,
     required this.maxLines,
   });
 
-  void Function(String?)? onSaved;
+  final void Function(String?)? onSaved;
   final String title;
   final int maxLines;
   @override

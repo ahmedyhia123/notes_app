@@ -20,7 +20,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
       key: myForm,
       child: Column(
         children: [
-          costomTextFormField(
+          CostomTextFormField(
             maxLines: 1,
             title: 'Title',
 
@@ -30,7 +30,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
           ),
           SizedBox(height: 10),
 
-          costomTextFormField(
+          CostomTextFormField(
             title: 'Contant',
             maxLines: 5,
             onSaved: (newValue) {
