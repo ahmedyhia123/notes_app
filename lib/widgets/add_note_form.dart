@@ -16,6 +16,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
   final GlobalKey<FormState> myForm = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   String? title, subtitle;
+
+  final isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -59,26 +61,48 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 setState(() {});
               }
             },
-            child: Container(
-              decoration: BoxDecoration(
-                color: kPrimaryColor,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              width: double.infinity,
-              height: 40,
-
-              child: Align(
-                alignment: Alignment.center,
-                child: Text(
-                  'Add',
-                  style: TextStyle(color: Colors.black, fontSize: 16),
-                ),
-              ),
+            child: BlocBuilder<AddNoteCubit, AddNoteState>(
+              builder: (context, state) {
+                return customBottom(
+                  isLoading: state is AddNoteLoding ? true : false,
+                );
+              },
             ),
           ),
 
           SizedBox(height: 40),
         ],
+      ),
+    );
+  }
+}
+
+class customBottom extends StatelessWidget {
+  const customBottom({super.key, this.isLoading = false});
+  final bool isLoading;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: kPrimaryColor,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      width: double.infinity,
+      height: 40,
+
+      child: Align(
+        alignment: Alignment.center,
+        child:
+            isLoading
+                ? SizedBox(
+                  height: 24,
+                  width: 24,
+                  child: CircularProgressIndicator(color: Colors.black),
+                )
+                : Text(
+                  'Add',
+                  style: TextStyle(color: Colors.black, fontSize: 16),
+                ),
       ),
     );
   }
