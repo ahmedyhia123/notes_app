@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/constans.dart';
 import 'package:notes_app/widgets/add_note_bottom_sheet.dart';
-import 'package:notes_app/widgets/note_item.dart';
+import 'package:notes_app/widgets/notes_view_body.dart';
 
 class NotesView extends StatelessWidget {
   const NotesView({super.key});
@@ -27,36 +27,7 @@ class NotesView extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Text('Notes', style: TextStyle(fontSize: 24)),
-                  Spacer(),
-                  Container(
-                    width: 46,
-                    height: 46,
-                    decoration: BoxDecoration(
-                      color: Colors.white10,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Icon(Icons.search),
-                  ),
-                ],
-              ),
-              SizedBox(height: 10),
-              Expanded(
-                child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 14),
-                      child: NoteItem(),
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
+          child: notes_view_body(),
         ),
       ),
     );
