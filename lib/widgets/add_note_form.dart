@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:notes_app/constans.dart';
 import 'package:notes_app/cubits/add_note_cubit/cubit/add_note_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
+import 'package:notes_app/widgets/colors_list_view.dart';
 import 'package:notes_app/widgets/costom_text_form_field.dart';
+import 'package:notes_app/widgets/custom_bottom.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({super.key});
@@ -45,6 +46,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
           ),
 
           SizedBox(height: 30),
+          ColorListView(),
+          SizedBox(height: 20),
           GestureDetector(
             onTap: () {
               if (myForm.currentState!.validate()) {
@@ -67,7 +70,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
             },
             child: BlocBuilder<AddNoteCubit, AddNoteState>(
               builder: (context, state) {
-                return customBottom(
+                return CustomBottom(
                   isLoading: state is AddNoteLoding ? true : false,
                 );
               },
@@ -76,37 +79,6 @@ class _AddNoteFormState extends State<AddNoteForm> {
 
           SizedBox(height: 40),
         ],
-      ),
-    );
-  }
-}
-
-class customBottom extends StatelessWidget {
-  const customBottom({super.key, this.isLoading = false});
-  final bool isLoading;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: kPrimaryColor,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      width: double.infinity,
-      height: 40,
-
-      child: Align(
-        alignment: Alignment.center,
-        child:
-            isLoading
-                ? SizedBox(
-                  height: 24,
-                  width: 24,
-                  child: CircularProgressIndicator(color: Colors.black),
-                )
-                : Text(
-                  'Add',
-                  style: TextStyle(color: Colors.black, fontSize: 16),
-                ),
       ),
     );
   }

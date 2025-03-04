@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notes_app/constans.dart';
 import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/main.dart';
 import 'package:notes_app/models/note_model.dart';
 
-class EditView extends StatelessWidget {
-  EditView({super.key, required this.note});
-  NoteModel note;
+class EditView extends StatefulWidget {
+  const EditView({super.key, required this.note});
+  final NoteModel note;
+
+  @override
+  State<EditView> createState() => _EditViewState();
+}
+
+class _EditViewState extends State<EditView> {
   TextEditingController titleController = TextEditingController();
+
   TextEditingController contentController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,15 +39,15 @@ class EditView extends StatelessWidget {
                     child: IconButton(
                       icon: Icon(Icons.check),
                       onPressed: () {
-                        note.title =
+                        widget.note.title =
                             titleController.text.isEmpty
-                                ? note.title
+                                ? widget.note.title
                                 : titleController.text;
-                        note.subtitle =
+                        widget.note.subtitle =
                             contentController.text.isEmpty
-                                ? note.subtitle
+                                ? widget.note.subtitle
                                 : contentController.text;
-                        objectBox.updateNote(note.id, note);
+                        objectBox.updateNote(widget.note.id, widget.note);
                         BlocProvider.of<NotesCubit>(context).fetchAllNotes();
                         Navigator.pop(context);
                       },
@@ -53,6 +60,7 @@ class EditView extends StatelessWidget {
                 controller: titleController,
                 cursorColor: Color(0xff62FCD6),
                 decoration: InputDecoration(
+                  hintText: widget.note.title,
                   label: Text(
                     'Title',
                     style: TextStyle(color: const Color(0xff62FCD6)),
@@ -73,6 +81,7 @@ class EditView extends StatelessWidget {
                 maxLines: 5,
                 cursorColor: Color(0xff62FCD6),
                 decoration: InputDecoration(
+                  hintText: widget.note.subtitle,
                   label: Text(
                     'Contant',
                     style: TextStyle(color: const Color(0xff62FCD6)),

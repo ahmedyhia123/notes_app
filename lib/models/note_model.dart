@@ -11,7 +11,7 @@ class NoteModel {
 
   final String date;
 
-  final int color;
+  int color;
 
   NoteModel({
     this.id = 0,
