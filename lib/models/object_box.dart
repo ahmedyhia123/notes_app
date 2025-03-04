@@ -16,11 +16,11 @@ class ObjectBox {
 
   NoteModel? getNote(int id) => _noteBox.get(id);
   int insertNote(NoteModel note) => _noteBox.put(note);
-  void updateNote(int noteId, String newTitle, String newContent) {
+  void updateNote(int noteId, NoteModel newNote) {
     var note = _noteBox.get(noteId); // احصل على الكائن الموجود
     if (note != null) {
-      note.title = newTitle;
-      note.subtitle = newContent;
+      note.title = newNote.title;
+      note.subtitle = newNote.subtitle;
       _noteBox.put(note); // قم بالتحديث
     }
   }

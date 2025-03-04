@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/constans.dart';
+import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
+import 'package:notes_app/main.dart';
+import 'package:notes_app/models/note_model.dart';
 
 class EditView extends StatelessWidget {
-  const EditView({super.key});
-
+  EditView({super.key, required this.note});
+  NoteModel note;
+  TextEditingController titleController = TextEditingController();
+  TextEditingController contentController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,12 +29,28 @@ class EditView extends StatelessWidget {
                       color: Colors.white10,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Icon(Icons.check),
+                    child: IconButton(
+                      icon: Icon(Icons.check),
+                      onPressed: () {
+                        note.title =
+                            titleController.text.isEmpty
+                                ? note.title
+                                : titleController.text;
+                        note.subtitle =
+                            contentController.text.isEmpty
+                                ? note.subtitle
+                                : contentController.text;
+                        objectBox.updateNote(note.id, note);
+                        BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                        Navigator.pop(context);
+                      },
+                    ),
                   ),
                 ],
               ),
               SizedBox(height: 20),
               TextField(
+                controller: titleController,
                 cursorColor: Color(0xff62FCD6),
                 decoration: InputDecoration(
                   label: Text(
@@ -47,6 +69,7 @@ class EditView extends StatelessWidget {
               ),
               SizedBox(height: 20),
               TextField(
+                controller: contentController,
                 maxLines: 5,
                 cursorColor: Color(0xff62FCD6),
                 decoration: InputDecoration(
@@ -65,27 +88,6 @@ class EditView extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 50),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: kPrimaryColor,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  width: double.infinity,
-                  height: 40,
-
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Cancel',
-                      style: TextStyle(color: Colors.black, fontSize: 16),
-                    ),
-                  ),
-                ),
-              ),
             ],
           ),
         ),
